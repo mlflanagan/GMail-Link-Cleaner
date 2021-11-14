@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GMail Link Cleaner</title>
+</head>
+<body>
+<input id="input" placeholder="Paste URL here ..."/>
+<script>
+(function () {
+    "use strict";
+    window.onload = function () {
+        var input = document.getElementById("input");
+        var cleanURL;
+        input.addEventListener("change", function () {
+            if (input.value.trim().length !== 0) {
+                cleanURL = input.value.match(/\?q=(.*)\&usg=/);
+                if (cleanURL) {
+                    input.value = decodeURIComponent(cleanURL[1]);
+                } else {
+                    input.value = "Failed to extract URL";
+                }
+            }
+        }, false);
+    };
+}());
+</script>
+</body>
+</html>
+
