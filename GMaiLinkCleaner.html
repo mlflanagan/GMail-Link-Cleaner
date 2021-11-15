@@ -10,16 +10,17 @@
 (function () {
     "use strict";
     window.onload = function () {
-        var input = document.getElementById("input");
         var cleanURL;
-        input.addEventListener("change", function () {
+        var input = document.getElementById("input");
+        input.addEventListener("input", function () {
             if (input.value.trim().length !== 0) {
-                cleanURL = input.value.match(/\?q=(.*)\&usg=/);
+                cleanURL = input.value.match(/\?q=(.*)\&sa=/);
                 if (cleanURL) {
                     input.value = decodeURIComponent(cleanURL[1]);
                 } else {
-                    input.value = "Failed to extract URL";
+                    input.value = "Could not extract URL";
                 }
+                input.select();
             }
         }, false);
     };
@@ -27,4 +28,3 @@
 </script>
 </body>
 </html>
-
