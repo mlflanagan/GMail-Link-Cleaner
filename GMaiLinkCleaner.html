@@ -5,22 +5,21 @@
 <title>GMail Link Cleaner</title>
 </head>
 <body>
-<input id="input" placeholder="Paste URL here ..."/>
+<input id="input" placeholder="Paste URI here ..."/>
+<div id="error"></div>
 <script>
 (function () {
     "use strict";
     window.onload = function () {
-        var cleanURL;
-        var input = document.getElementById("input");
+        let input = document.getElementById("input");
         input.addEventListener("input", function () {
             if (input.value.trim().length !== 0) {
-                cleanURL = input.value.match(/\?q=(.*)\&sa=/);
-                if (cleanURL) {
-                    input.value = decodeURIComponent(cleanURL[1]);
+                let match = input.value.match(/\?q=(.*)\&sa=/);
+                if (match) {
+                    window.location = decodeURIComponent(match[1]);
                 } else {
-                    input.value = "Could not extract URL";
+                    document.getElementById("error").innerHTML = "Could not extract URI";
                 }
-                input.select();
             }
         }, false);
     };
