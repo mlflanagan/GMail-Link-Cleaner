@@ -16,7 +16,8 @@
             if (input.value.trim().length !== 0) {
                 let match = input.value.match(/\?q=(.*)\&sa=/);
                 if (match) {
-                    window.location = decodeURIComponent(match[1]);
+                    // window.location = decodeURIComponent(match[1]);
+                    window.open(decodeURIComponent(match[1]), '_blank');
                 } else {
                     document.getElementById("error").innerHTML = "Could not extract URI";
                 }
